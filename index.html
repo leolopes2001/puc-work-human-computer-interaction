@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-orange-100 h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full">
+      <h1 class="text-2xl font-bold text-center text-orange-600 mb-6">Login</h1>
+
+      <form id="loginForm" class="space-y-4">
+        <input
+          type="text"
+          id="username"
+          placeholder="Usuário"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          required
+        />
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Senha"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          required
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition"
+        >
+          Entrar
+        </button>
+      </form>
+
+      <p id="loginError" class="text-red-500 text-center mt-4 hidden">
+        Usuário ou senha inválidos!
+      </p>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+
+      const users = {
+        admin: "admin123",
+        cliente: "cliente123",
+      };
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (users[username] && users[username] === password) {
+          if (username === "admin") {
+            window.location.href = "admin.html";
+          } else {
+            window.location.href = "cliente.html";
+          }
+        } else {
+          loginError.textContent = "Usuário ou senha inválidos!";
+          loginError.classList.remove("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>

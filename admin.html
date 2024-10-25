@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciar Pedidos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-100 min-h-screen flex items-center justify-center">
+
+    <div class="container mx-auto p-8">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-orange-600">Gerenciar Pedidos</h1>
+                <a href="index.html" 
+                   class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
+                   Logout
+                </a>
+            </div>
+
+            <ul id="listaPedidosAdmin" 
+                class="space-y-4 overflow-y-auto h-96 border-t border-gray-200 pt-4">
+    
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

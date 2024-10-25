@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Cachorro-Quente</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body class="bg-orange-100 min-h-screen p-5 flex items-center justify-center">
+
+    <div class="container mx-auto space-y-8 flex gap-5">
+        <div class="bg-white shadow-lg rounded-lg p-6 min-w-[600px]">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold text-orange-600">Faça seu Pedido</h1>
+                <a href="index.html" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
+                    Logout
+                </a>
+            </div>
+
+            <form id="cachorroForm" class="space-y-4">
+                <div>
+                    <label for="adicionais" class="block font-semibold text-gray-700">Escolha os Adicionais:</label>
+                    <select 
+                        id="adicionais" 
+                        class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        multiple>
+                        <option value="Ketchup">Ketchup</option>
+                        <option value="Mostarda">Mostarda</option>
+                        <option value="Batata Palha">Batata Palha</option>
+                        <option value="Bacon">Bacon</option>
+                    </select>
+                </div>
+
+                <button 
+                    type="button" 
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg"
+                    id="adicionarCachorro">
+                    Adicionar Cachorro-Quente
+                </button>
+            </form>
+
+            <h2 class="my-4 text-xl font-bold text-gray-700">Resumo do Pedido</h2>
+            <ul id="pedidoResumo" class="list-none space-y-2"></ul>
+
+            <button 
+                id="finalizarPedido" 
+                class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg mt-4">
+                Finalizar Pedido
+            </button>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-6 w-full m-0" style="margin: 0 !important;">
+            <h1 class="text-2xl font-bold text-orange-600 mb-4">Pedidos Realizados</h1>
+            <ul id="listaPedidos" class="list-none space-y-4 overflow-y-auto" style="max-height: 500px;"></ul>
+        </div>
+    </div>
+
+    <div id="qrCodeModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+            <span id="fecharModal" class="text-red-500 text-2xl font-bold cursor-pointer">&times;</span>
+            <h2 class="text-xl font-bold mb-4">QR Code para Pagamento</h2>
+            <canvas id="qrCodeCanvas"></canvas>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
