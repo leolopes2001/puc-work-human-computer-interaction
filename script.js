@@ -25,9 +25,13 @@ function carregarPedidosAdmin() {
                 <p class="text-sm ${pedido.statusPedido === 'Finalizado' ? 'text-green-500' : 'text-red-500'}">
                     <strong>Status do Pedido:</strong> ${pedido.statusPedido}
                 </p>
+                <p class="text-sm ${pedido.statusPagamento === 'Finalizado' ? 'text-green-500' : 'text-red-500'}">
+                    <strong>Status do pagamento:</strong> ${pedido.statusPagamento}
+                </p>
             </div>
 
-            <button 
+           <div class='flex flex-col gap-2'>
+                 <button 
                 onclick="finalizarPedido(${index})" 
                 class="py-2 px-4 rounded-lg font-semibold text-white 
                        ${pedido.statusPedido === 'Finalizado' 
@@ -35,8 +39,22 @@ function carregarPedidosAdmin() {
                           : 'bg-green-500 hover:bg-green-600'}"
                 ${pedido.statusPedido === 'Finalizado' ? 'disabled' : ''}
             >
-                ${pedido.statusPedido === 'Finalizado' ? 'Finalizado' : 'Finalizar'}
+                ${pedido.statusPedido === 'Finalizado' ? 'Pedido Finalizado' : 'Finalizar pedido'}
             </button>
+
+
+            <button 
+                onclick="finalizarPagamento(${index})" 
+                class="py-2 px-4 rounded-lg font-semibold text-white 
+                       ${pedido.statusPagamento === 'Finalizado' 
+                          ? 'bg-gray-400 cursor-not-allowed' 
+                          : 'bg-green-500 hover:bg-green-600'}"
+                ${pedido.statusPagamento === 'Finalizado' ? 'disabled' : ''}
+            >
+                ${pedido.statusPagamento === 'Finalizado' ? 'Pagamento Efetuado' : 'Confirmar pagamento'}
+            </button>
+
+           </div>
         `;
 
         listaPedidosAdmin.appendChild(li);
@@ -49,5 +67,13 @@ function finalizarPedido(index) {
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     carregarPedidosAdmin(); 
 }
+
+function finalizarPagamento(index) {
+    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    pedidos[index].statusPagamento = 'Finalizado';
+    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    carregarPedidosAdmin(); 
+}
+
 
 window.onload = carregarPedidosAdmin;

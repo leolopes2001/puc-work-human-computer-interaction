@@ -75,12 +75,14 @@ function carregarPedidos() {
             <strong>Pedido ${index + 1}</strong><br>
             Itens: ${pedido.itens.map(item => item.adicionais.join(', ')).join(' | ')}<br>
             Total: R$ ${pedido.total.toFixed(2)}<br>
-            Status do Pedido: ${pedido.statusPedido}<br>
-            Status do Pagamento: ${pedido.statusPagamento}<br>
-         <button onclick="abrirModal(${pedido.total})" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600">
+            <span class='${pedido.statusPedido === 'Finalizado' ? 'text-green-500' : 'text-red-500'}'>Status do Pedido: ${pedido.statusPedido}</span><br>
+            <span class='${pedido.statusPagamento === 'Finalizado' ? 'text-green-500' : 'text-red-500'}'> Status do Pagamento: ${pedido.statusPagamento}</span><br>
+         <button onclick="abrirModal(${pedido.total})" class="bg-blue-500 text-white font-semibold py-2 px-4 mt-2 rounded hover:bg-blue-600">
     Visualizar QR Code
 </button>
         `;
+
+
         listaPedidos.appendChild(li);
     });
 }
